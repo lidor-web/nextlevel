@@ -518,6 +518,65 @@
   }
   .footer-brand .logo { font-size: 1.6rem; display: block; margin-bottom: 10px; }
   .footer-tagline { color: rgba(255,255,255,0.3); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; }
+
+  /* ─── TESTIMONIALS ─── */
+  .testimonials-section {
+    padding: 80px 60px;
+    background: #f3f4f6;
+  }
+  .testimonials-inner { max-width: 1280px; margin: 0 auto; }
+  .testimonials-header { text-align: center; margin-bottom: 56px; }
+  .testimonials-header h2 {
+    font-family: 'Lexend', sans-serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 900; color: var(--navy);
+    margin-top: 12px;
+  }
+  .testimonials-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+  .tcard {
+    background: #fff;
+    border-radius: 16px;
+    padding: 36px;
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    position: relative; overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .tcard:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.1); }
+  .tcard-stripe {
+    position: absolute; top: 0; right: 0;
+    width: 4px; height: 100%;
+  }
+  .tcard-stripe.red { background: var(--red); }
+  .tcard-stripe.navy { background: var(--navy); }
+  .tcard-author { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+  .tcard-avatar {
+    width: 52px; height: 52px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--navy), var(--red));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Lexend', sans-serif; font-weight: 900;
+    color: var(--white); font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+  .tcard-name {
+    font-family: 'Lexend', sans-serif;
+    font-size: 1rem; font-weight: 800; color: var(--navy);
+  }
+  .tcard-school { color: var(--red); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+  .tcard-stars { display: flex; gap: 2px; margin-bottom: 16px; color: var(--gold); font-size: 1.1rem; }
+  .tcard-stars span { font-size: 1rem !important; }
+  .tcard blockquote {
+    color: #555; font-size: 0.95rem; line-height: 1.75;
+    font-style: italic; font-weight: 400;
+    padding: 0; margin: 0;
+  }
+  .tcard blockquote::before { display: none; }
+  @media (max-width: 900px) {
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .testimonials-section { padding: 60px 20px; }
+  }
   .footer-links h5 {
     color: rgba(255,255,255,0.3); font-size: 0.7rem;
     letter-spacing: 0.15em; text-transform: uppercase;
@@ -593,7 +652,9 @@
 <!-- ─── NAVIGATION ─── -->
 <nav>
   <div class="nav-inner">
-    <div class="logo">Next Level <span>USA</span></div>
+    <div style="display:flex;align-items:center;gap:12px">
+      <img src="https://lh3.googleusercontent.com/aida/ADBb0ujaEJvQu462cu_7MeIw0PObP1zsH4iZT52a_79I7VJBenKYW7C9Sex7HJlA_lC1a3jj0x_viLo4-ryFgig8NKzQIDPk71XQ8wWq_1yFdehK5yjsqMWS0_tlSxNSphL-qkXR0zETBxSBGTHNHHyaDuevlKHtybKcfmZzy6bt0_ZVSshWpRrvesfVSaHGCpzxgguYMTbSREIARmo0TEdOpkPUw_BbF7jpRQ0ntvHa6HzMdddp6_sCBGFxia1OC3x67-DMzEfFsTozivM" alt="Logo" style="height:44px;width:auto;filter:drop-shadow(0 0 8px rgba(255,255,255,0.25))"/>
+    </div>
     <div class="nav-links">
       <a href="#journey" class="active">The Journey</a>
       <a href="#why-us">למה אנחנו</a>
@@ -752,6 +813,72 @@
   </div>
 </section>
 
+<!-- ─── TESTIMONIALS ─── -->
+<section class="testimonials-section">
+  <div class="testimonials-inner">
+    <div class="testimonials-header">
+      <p class="section-label red">Testimonials</p>
+      <h2 class="reveal">סיפורי ההצלחה שלנו</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="tcard reveal">
+        <div class="tcard-stripe red"></div>
+        <div class="tcard-author">
+          <div class="tcard-avatar">ד.ל</div>
+          <div>
+            <div class="tcard-name">דניאל לוי</div>
+            <div class="tcard-school">UCLA Soccer</div>
+          </div>
+        </div>
+        <div class="tcard-stars">
+          <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1,'wght' 400">star</span>
+          <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1,'wght' 400">star</span>
+          <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1,'wght' 400">star</span>
+          <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1,'wght' 400">star</span>
+          <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1,'wght' 400">star</span>
+        </div>
+        <blockquote>בזכות הליווי המקצועי של Next Level USA, הצלחתי להגשים חלום ולשחק באחת המכללות הטובות בארה״ב. הם היו שם בכל שלב, מהוידאו ועד החתימה.</blockquote>
+      </div>
+      <div class="tcard reveal reveal-delay-1">
+        <div class="tcard-stripe navy"></div>
+        <div class="tcard-author">
+          <div class="tcard-avatar" style="background:linear-gradient(135deg,#002366,#00113a)">ע.כ</div>
+          <div>
+            <div class="tcard-name">עידו כהן</div>
+            <div class="tcard-school">Stanford University</div>
+          </div>
+        </div>
+        <div class="tcard-stars">
+          <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1,'wght' 400">star</span>
+          <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1,'wght' 400">star</span>
+          <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1,'wght' 400">star</span>
+          <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1,'wght' 400">star</span>
+          <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1,'wght' 400">star</span>
+        </div>
+        <blockquote>הקשרים שלהם עם המאמנים בארה״ב הם נכס אמיתי. הרגשתי שאני בידיים בטוחות ומקצועיות לאורך כל הדרך. ממליץ בחום לכל שחקן שרוצה להגיע רחוק.</blockquote>
+      </div>
+      <div class="tcard reveal reveal-delay-2">
+        <div class="tcard-stripe red"></div>
+        <div class="tcard-author">
+          <div class="tcard-avatar">ר.א</div>
+          <div>
+            <div class="tcard-name">רועי אשכנזי</div>
+            <div class="tcard-school">Duke University</div>
+          </div>
+        </div>
+        <div class="tcard-stars">
+          <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1,'wght' 400">star</span>
+          <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1,'wght' 400">star</span>
+          <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1,'wght' 400">star</span>
+          <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1,'wght' 400">star</span>
+          <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1,'wght' 400">star</span>
+        </div>
+        <blockquote>המעטפת המקצועית שקיבלתי בארץ הכינה אותי בדיוק לדרישות הפיזיות והמנטליות של הקולג׳ים. Next Level USA הם ללא ספק הכי טובים בתחום.</blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ─── FORM / APPLY ─── -->
 <section class="form-section" id="apply">
   <div class="form-wrapper reveal">
@@ -819,7 +946,7 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <span class="logo">Next Level <span>USA</span></span>
+      <img src="https://lh3.googleusercontent.com/aida/ADBb0ujaEJvQu462cu_7MeIw0PObP1zsH4iZT52a_79I7VJBenKYW7C9Sex7HJlA_lC1a3jj0x_viLo4-ryFgig8NKzQIDPk71XQ8wWq_1yFdehK5yjsqMWS0_tlSxNSphL-qkXR0zETBxSBGTHNHHyaDuevlKHtybKcfmZzy6bt0_ZVSshWpRrvesfVSaHGCpzxgguYMTbSREIARmo0TEdOpkPUw_BbF7jpRQ0ntvHa6HzMdddp6_sCBGFxia1OC3x67-DMzEfFsTozivM" alt="Next Level USA" style="height:64px;width:auto;filter:drop-shadow(0 0 10px rgba(255,255,255,0.2));margin-bottom:10px;display:block"/>
       <p class="footer-tagline">החלום האמריקאי שלך מתחיל כאן</p>
     </div>
     <div class="footer-links">
