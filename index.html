@@ -7,6 +7,9 @@
 <!-- Google Fonts: Assistant -->
 <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<!-- Supabase JS Library -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
   :root {
     --navy: #00113a;
@@ -53,7 +56,7 @@
   }
   .logo-container a { display: block; }
   .logo-container img {
-    height: 65px; /* גובה הלוגו */
+    height: 65px;
     width: auto;
     display: block;
     transition: transform 0.3s;
@@ -73,7 +76,7 @@
     background: var(--gold); color: var(--navy);
     border: none; cursor: pointer;
     padding: 10px 24px; border-radius: 4px;
-    font-family: 'Assistant', sans-serif;
+    font-family: 'Assistant', sans-serif !important;
     font-weight: 800;
     font-size: 0.95rem;
     transition: all 0.2s; box-shadow: 0 4px 0 var(--gold-dark);
@@ -137,7 +140,7 @@
     background: var(--gold); color: var(--navy);
     border: none; cursor: pointer;
     padding: 18px 36px; border-radius: 8px;
-    font-family: 'Assistant', sans-serif;
+    font-family: 'Assistant', sans-serif !important;
     font-weight: 800;
     font-size: 1.2rem;
     box-shadow: 0 5px 0 var(--gold-dark);
@@ -151,7 +154,7 @@
     border: 2px solid rgba(255,255,255,0.2);
     color: var(--white); cursor: pointer;
     padding: 18px 36px; border-radius: 8px;
-    font-family: 'Assistant', sans-serif;
+    font-family: 'Assistant', sans-serif !important;
     font-weight: 700;
     font-size: 1.2rem;
     transition: all 0.2s; text-decoration: none;
@@ -183,14 +186,7 @@
   .stat-num { font-size: 1.6rem; font-weight: 800; color: var(--gold); }
   .stat-label { font-size: 0.8rem; color: var(--text-muted); font-weight: 600; }
 
-  /* ─── SECTIONS ─── */
-  .section-label {
-    font-size: 1rem; font-weight: 700;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    margin-bottom: 12px; display: block;
-    color: var(--red);
-  }
-  
+  /* ─── WHY US ─── */
   .bento-section { padding: 100px 60px; max-width: 1280px; margin: 0 auto; }
   .bento-header { margin-bottom: 50px; }
   .bento-header h2 { font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 800; color: var(--navy); }
@@ -218,88 +214,44 @@
   .tcard-name { font-weight: 800; font-size: 1.3rem; color: var(--navy); }
   .tcard-school { color: var(--red); font-weight: 700; margin-bottom: 15px; }
 
-  /* ─── ELEGANT FORM SECTION ─── */
-  .form-section { 
-    padding: 120px 60px; 
-    background: linear-gradient(180deg, var(--white) 0%, var(--off-white) 100%);
-    position: relative;
-  }
+  /* ─── ELEGANT FORM ─── */
+  .form-section { padding: 120px 60px; background: linear-gradient(180deg, var(--white), var(--off-white)); }
   .form-container { 
-    max-width: 900px; margin: 0 auto; 
-    background: var(--white); 
-    padding: 60px; 
-    border-radius: 32px; 
-    box-shadow: 0 20px 80px rgba(0,17,58,0.08);
-    border: 1px solid rgba(0,17,58,0.03);
-    position: relative;
-    z-index: 2;
+    max-width: 900px; margin: 0 auto; background: var(--white); padding: 60px; border-radius: 32px; 
+    box-shadow: 0 20px 80px rgba(0,17,58,0.08); border: 1px solid rgba(0,17,58,0.03); 
   }
   .form-header { text-align: center; margin-bottom: 45px; }
-  .form-header h2 { font-size: 2.8rem; font-weight: 800; color: var(--navy); margin-bottom: 15px; }
-  .form-header p { font-size: 1.15rem; color: #666; max-width: 500px; margin: 0 auto; line-height: 1.6; }
-
-  .form-grid { 
-    display: grid; 
-    grid-template-columns: 1fr 1fr; 
-    gap: 25px 30px; 
-  }
+  .form-header h2 { font-size: 2.8rem; font-weight: 800; color: var(--navy); }
+  
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px 30px; }
   .field { display: flex; flex-direction: column; gap: 10px; }
   .field.full { grid-column: span 2; }
+  .field label { font-size: 0.95rem; font-weight: 700; color: var(--navy); display: flex; align-items: center; gap: 6px; }
   
-  .field label { 
-    font-size: 0.95rem; font-weight: 700; color: var(--navy); 
-    margin-right: 4px; display: flex; align-items: center; gap: 6px;
-  }
-  .field label .material-symbols-outlined { font-size: 1.1rem; margin-bottom: 0; color: var(--red); }
-
-  input, select {
-    padding: 18px 20px; 
-    border-radius: 12px; 
-    border: 1px solid #e1e4e8;
-    background: #fcfdfe;
-    font-family: 'Assistant', sans-serif; 
-    font-size: 1.05rem;
-    transition: all 0.3s ease;
-    color: var(--navy);
-  }
-  input::placeholder { color: #abb2bf; }
-  input:focus, select:focus {
-    outline: none;
-    border-color: var(--navy);
-    background: var(--white);
-    box-shadow: 0 0 0 4px rgba(0,17,58,0.05);
+  input, select { 
+    padding: 18px 20px; border-radius: 12px; border: 1px solid #e1e4e8; background: #fcfdfe; 
+    font-family: 'Assistant', sans-serif; font-size: 1.05rem; width: 100%;
   }
 
   .btn-submit {
-    background: var(--gold); color: var(--navy);
-    border: none; padding: 22px; border-radius: 14px;
-    font-family: 'Assistant', sans-serif;
-    font-weight: 800; font-size: 1.25rem; 
-    cursor: pointer;
-    box-shadow: 0 8px 0 var(--gold-dark); 
-    transition: all 0.2s ease;
-    width: 100%;
-    margin-top: 20px;
-    display: flex; align-items: center; justify-content: center; gap: 10px;
+    background: var(--gold); color: var(--navy); border: none; padding: 22px; border-radius: 14px;
+    font-family: 'Assistant', sans-serif !important; font-weight: 800; font-size: 1.25rem; 
+    cursor: pointer; box-shadow: 0 8px 0 var(--gold-dark); transition: all 0.2s ease;
+    width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;
   }
-  .btn-submit:hover { transform: translateY(3px); box-shadow: 0 4px 0 var(--gold-dark); background: #f2ce5b; }
-  .btn-submit:active { transform: translateY(6px); box-shadow: 0 0 0 var(--gold-dark); }
+  .btn-submit:hover { transform: translateY(3px); box-shadow: 0 4px 0 var(--gold-dark); }
 
   /* ─── FOOTER ─── */
   footer { background: #00081a; color: white; padding: 80px 60px 40px; }
   .footer-inner { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; }
-  .footer-logo { height: 75px; width: auto; margin-bottom: 20px; display: block; }
 
   @media (max-width: 1024px) {
     .hero-content { grid-template-columns: 1fr; text-align: center; }
     .hero-ctas { justify-content: center; }
     .hero-card { display: none; }
-    .bento-grid, .steps-grid, .testimonials-grid { grid-template-columns: 1fr; }
-    .bc-experience, .bc-marketing, .bc-network, .bc-training { grid-column: span 1; }
+    .bento-grid, .steps-grid, .testimonials-grid, .form-grid { grid-template-columns: 1fr; }
+    .bc-experience, .bc-marketing, .bc-network, .bc-training, .field.full { grid-column: span 1; }
     .nav-links { display: none; }
-    .form-container { padding: 40px 25px; }
-    .form-grid { grid-template-columns: 1fr; gap: 20px; }
-    .field.full { grid-column: span 1; }
   }
 
   .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s all ease; }
@@ -327,41 +279,24 @@
 <!-- ─── HERO ─── -->
 <header class="hero">
   <div class="hero-bg">
-    <img src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&q=80&w=2000" alt="Stadium Background"/>
+    <img src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&q=80&w=2000" alt="Stadium"/>
   </div>
   <div class="hero-content">
     <div>
-      <div class="hero-badge reveal">
-        <span>הדרך שלך לקולג' מתחילה כאן</span>
-      </div>
-      <h1 class="reveal">
-        Next Level USA –<br>
-        <span class="accent">הגשר הישיר</span> שלך<br>
-        מהמגרש לארה"ב.
-      </h1>
-      <p class="reveal">
-        ליווי אישי ומקצועי להשגת מלגות כדורגל בקולג'ים המובילים באמריקה. אנחנו כאן כדי לארוז את הכישרון שלך ולהביא אותך לרמה הבאה.
-      </p>
+      <div class="hero-badge reveal"><span>הדרך שלך לקולג' מתחילה כאן</span></div>
+      <h1 class="reveal">Next Level USA –<br><span class="accent">הגשר הישיר</span> שלך<br>מהמגרש לארה"ב.</h1>
+      <p class="reveal">ליווי אישי ומקצועי להשגת מלגות כדורגל בקולג'ים המובילים באמריקה. אנחנו כאן כדי לארוז את הכישרון שלך ולהביא אותך לרמה הבאה.</p>
       <div class="hero-ctas reveal">
         <a href="#apply" class="btn-primary">התחל את המסע שלך</a>
         <a href="#testimonials" class="btn-secondary">צפה בסיפורי הצלחה</a>
       </div>
     </div>
     <div class="hero-card reveal">
-      <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&q=80&w=1000" alt="College Soccer USA"/>
+      <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&q=80&w=1000" alt="College Soccer"/>
       <div class="hero-stats">
-        <div class="stat">
-          <div class="stat-num">20+</div>
-          <div class="stat-label">שנות ניסיון</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">300+</div>
-          <div class="stat-label">שחקנים חתמו</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">NCAA</div>
-          <div class="stat-label">D1-D3</div>
-        </div>
+        <div class="stat"><div class="stat-num">20+</div><div class="stat-label">שנות ניסיון</div></div>
+        <div class="stat"><div class="stat-num">300+</div><div class="stat-label">שחקנים חתמו</div></div>
+        <div class="stat"><div class="stat-num">NCAA</div><div class="stat-label">D1-D3</div></div>
       </div>
     </div>
   </div>
@@ -369,132 +304,50 @@
 
 <!-- ─── WHY US ─── -->
 <section class="bento-section" id="why-us">
-  <div class="bento-header reveal">
-    <span class="section-label">למה Next Level USA?</span>
-    <h2>היתרונות שהופכים אותנו לבחירה של המקצוענים</h2>
-  </div>
+  <div class="bento-header reveal"><h2>היתרונות שהופכים אותנו לבחירה של המקצוענים</h2></div>
   <div class="bento-grid">
-    <div class="bento-card bc-experience reveal">
-      <span class="material-symbols-outlined">verified</span>
-      <h3>ניסיון ללא פשרות</h3>
-      <p>מעל 20 שנות ניסיון בייצוג שחקנים מול מאמני קולג'ים. אנחנו מכירים את המערכת מבפנים.</p>
-    </div>
-    <div class="bento-card bc-marketing reveal">
-      <span class="material-symbols-outlined">videocam</span>
-      <h3>אריזה שיווקית</h3>
-      <p>בניית קליפ ביצועים מקצועי ופרופיל שחקן שמאמנים פשוט לא יכולים להתעלם ממנו.</p>
-    </div>
-    <div class="bento-card bc-network reveal">
-      <span class="material-symbols-outlined">groups</span>
-      <h3>קשרים ישירים</h3>
-      <p>רשת קשרים ענפה עם מאות מאמנים בליגות הבכירות ביותר בארה"ב.</p>
-    </div>
-    <div class="bento-card bc-training reveal">
-      <span class="material-symbols-outlined">fitness_center</span>
-      <h3>מעטפת מקצועית</h3>
-      <p>ליווי אישי, סקאוטינג ואנליזה מקצועית כאן בישראל, כדי שתגיעו הכי מוכנים שיש.</p>
-    </div>
+    <div class="bento-card bc-experience reveal"><span class="material-symbols-outlined">verified</span><h3>ניסיון ללא פשרות</h3><p>מעל 20 שנות ניסיון בייצוג שחקנים מול מאמני קולג'ים. אנחנו מכירים את המערכת מבפנים.</p></div>
+    <div class="bento-card bc-marketing reveal"><span class="material-symbols-outlined">videocam</span><h3>אריזה שיווקית</h3><p>בניית קליפ ביצועים מקצועי ופרופיל שחקן שמאמנים פשוט לא יכולים להתעלם ממנו.</p></div>
+    <div class="bento-card bc-network reveal"><span class="material-symbols-outlined">groups</span><h3>קשרים ישירים</h3><p>רשת קשרים ענפה עם מאות מאמנים בליגות הבכירות ביותר בארה"ב.</p></div>
+    <div class="bento-card bc-training reveal"><span class="material-symbols-outlined">fitness_center</span><h3>מעטפת מקצועית</h3><p>ליווי אישי, סקאוטינג ואנליזה מקצועית כאן בישראל, כדי שתגיעו הכי מוכנים שיש.</p></div>
   </div>
 </section>
 
 <!-- ─── PROCESS ─── -->
 <section class="process-section" id="process">
   <div class="reveal">
-    <span class="section-label" style="color:var(--gold)">השיטה שלנו</span>
     <h2>תהליך העבודה לקראת המלגה</h2>
     <div class="steps-grid">
-      <div class="step">
-        <div class="step-number">01</div>
-        <h4>אפיון וסקאוטינג</h4>
-        <p>ניתוח היכולות שלך והתאמה לליגה המתאימה.</p>
-      </div>
-      <div class="step">
-        <div class="step-number">02</div>
-        <h4>בניית פרופיל</h4>
-        <p>יצירת חומר שיווקי וויזואלי ברמה הגבוהה ביותר.</p>
-      </div>
-      <div class="step">
-        <div class="step-number">03</div>
-        <h4>פנייה למאמנים</h4>
-        <p>ניהול הקשר והמשא ומתן מול הקולג'ים השונים.</p>
-      </div>
-      <div class="step">
-        <div class="step-number">04</div>
-        <h4>חתימה וטיסה</h4>
-        <p>ליווי עד לקבלת המלגה והיציאה לארה"ב.</p>
-      </div>
+      <div class="step"><div class="step-number">01</div><h4>אפיון וסקאוטינג</h4><p>ניתוח היכולות שלך והתאמה לליגה המתאימה.</p></div>
+      <div class="step"><div class="step-number">02</div><h4>בניית פרופיל</h4><p>יצירת חומר שיווקי וויזואלי ברמה הגבוהה ביותר.</p></div>
+      <div class="step"><div class="step-number">03</div><h4>פנייה למאמנים</h4><p>ניהול הקשר והמשא ומתן מול הקולג'ים השונים.</p></div>
+      <div class="step"><div class="step-number">04</div><h4>חתימה וטיסה</h4><p>ליווי עד לקבלת המלגה והיציאה לארה"ב.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ─── SUCCESS STORIES (TESTIMONIALS) ─── -->
+<!-- ─── TESTIMONIALS ─── -->
 <section class="testimonials-section" id="testimonials">
-  <div class="bento-header reveal" style="text-align:center">
-    <span class="section-label">סיפורי הצלחה</span>
-    <h2>השחקנים שלנו שכבר מגשימים את החלום</h2>
-  </div>
+  <div class="bento-header reveal" style="text-align:center"><h2>השחקנים שלנו שכבר מגשימים את החלום</h2></div>
   <div class="testimonials-grid">
-    <div class="tcard reveal">
-      <div class="tcard-name">דניאל לוי</div>
-      <div class="tcard-school">UCLA Soccer</div>
-      <blockquote>"בזכות הליווי המקצועי הצלחתי להגיע לאחת המכללות הטובות ביותר. הוידאו שהם הכינו לי עשה את כל ההבדל."</blockquote>
-    </div>
-    <div class="tcard reveal">
-      <div class="tcard-name">עידו כהן</div>
-      <div class="tcard-school">Stanford University</div>
-      <blockquote>"הקשרים שלהם עם המאמנים בארה"ב הם פשוט נכס. הרגשתי שאני בידיים בטוחות לאורך כל הדרך."</blockquote>
-    </div>
-    <div class="tcard reveal">
-      <div class="tcard-name">רועי אשכנזי</div>
-      <div class="tcard-school">Duke University</div>
-      <blockquote>"ההכנה המנטלית והמקצועית בארץ עזרה לי להשתלב מהר מאוד בקצב של הכדורגל האמריקאי."</blockquote>
-    </div>
+    <div class="tcard reveal"><div class="tcard-name">דניאל לוי</div><div class="tcard-school">UCLA Soccer</div><blockquote>"בזכות הליווי המקצועי הצלחתי להגיע לאחת המכללות הטובות ביותר. הוידאו שהם הכינו לי עשה את כל ההבדל."</blockquote></div>
+    <div class="tcard reveal"><div class="tcard-name">עידו כהן</div><div class="tcard-school">Stanford University</div><blockquote>"הקשרים שלהם עם המאמנים בארה"ב הם פשוט נכס. הרגשתי שאני בידיים בטוחות לאורך כל הדרך."</blockquote></div>
+    <div class="tcard reveal"><div class="tcard-name">רועי אשכנזי</div><div class="tcard-school">Duke University</div><blockquote>"ההכנה המנטלית והמקצועית בארץ עזרה לי להשתלב מהר מאוד בקצב של הכדורגל האמריקאי."</blockquote></div>
   </div>
 </section>
 
-<!-- ─── ELEGANT APPLY FORM ─── -->
+<!-- ─── APPLY FORM ─── -->
 <section class="form-section" id="apply">
   <div class="form-container reveal">
-    <div class="form-header">
-      <span class="section-label">Admission 2026</span>
-      <h2>בדוק התאמה למלגה</h2>
-      <p>השאר פרטים ואחד המומחים שלנו יחזור אליך לשיחת אפיון ראשונית ובדיקת סיכויי קבלה.</p>
-    </div>
-    <form onsubmit="handleSubmit(event)">
+    <div class="form-header"><h2>בדוק התאמה למלגה</h2><p>השאר פרטים ונחזור אליך לשיחת אפיון ראשונית ובדיקת סיכויי קבלה.</p></div>
+    <form id="leadForm" onsubmit="handleSubmit(event)">
       <div class="form-grid">
-        <div class="field">
-          <label><span class="material-symbols-outlined">person</span> שם מלא</label>
-          <input type="text" required placeholder="ישראל ישראלי">
-        </div>
-        <div class="field">
-          <label><span class="material-symbols-outlined">event</span> גיל</label>
-          <input type="number" required placeholder="למשל: 18">
-        </div>
-        <div class="field">
-          <label><span class="material-symbols-outlined">call</span> טלפון ליצירת קשר</label>
-          <input type="tel" required placeholder="050-0000000">
-        </div>
-        <div class="field">
-          <label><span class="material-symbols-outlined">sports_soccer</span> קבוצה נוכחית / מועדון</label>
-          <input type="text" placeholder="שם הקבוצה שלך">
-        </div>
-        <div class="field full">
-          <label><span class="material-symbols-outlined">shield</span> עמדה עיקרית במגרש</label>
-          <select>
-            <option value="" disabled selected>בחר עמדה</option>
-            <option>שוער</option>
-            <option>בלם / מגן</option>
-            <option>קשר אחורי / מרכזי</option>
-            <option>קשר התקפי / כנף</option>
-            <option>חלוץ</option>
-          </select>
-        </div>
-        <div class="field full">
-          <button type="submit" class="btn-submit">
-            שלח מועמדות לבדיקה
-            <span class="material-symbols-outlined">arrow_back_ios</span>
-          </button>
-        </div>
+        <div class="field"><label>שם מלא</label><input type="text" id="fullName" required placeholder="ישראל ישראלי"></div>
+        <div class="field"><label>גיל</label><input type="number" id="age" required placeholder="18"></div>
+        <div class="field"><label>טלפון</label><input type="tel" id="phone" required placeholder="050-0000000"></div>
+        <div class="field"><label>קבוצה</label><input type="text" id="team" placeholder="שם הקבוצה שלך"></div>
+        <div class="field full"><label>עמדה</label><select id="position"><option value="" disabled selected>בחר עמדה</option><option>שוער</option><option>בלם / מגן</option><option>קשר</option><option>חלוץ</option></select></div>
+        <div class="field full"><button type="submit" class="btn-submit">שלח מועמדות לבדיקה <span class="material-symbols-outlined">arrow_back_ios</span></button></div>
       </div>
     </form>
   </div>
@@ -504,24 +357,32 @@
 <footer>
   <div class="footer-inner">
     <div>
-      <img src="WhatsApp Image 2026-03-31 at 14.57.20.jpeg" alt="Logo" class="footer-logo"/>
+      <img src="WhatsApp Image 2026-03-31 at 14.57.20.jpeg" alt="Logo" style="height:70px; margin-bottom:15px"/>
       <p style="opacity:0.6">Next Level USA - הגשר שלך לכדורגל בקולג'ים.<br>© 2026 כל הזכויות שמורות.</p>
     </div>
     <div style="display:flex; flex-direction:column; gap:12px">
-      <a href="#why-us" style="color:white; text-decoration:none; font-weight: 600;">למה אנחנו</a>
-      <a href="#process" style="color:white; text-decoration:none; font-weight: 600;">התהליך</a>
-      <a href="#testimonials" style="color:white; text-decoration:none; font-weight: 600;">סיפורי הצלחה</a>
+      <a href="#why-us" style="color:white; text-decoration:none;">למה אנחנו</a>
+      <a href="#process" style="color:white; text-decoration:none;">התהליך</a>
+      <a href="#testimonials" style="color:white; text-decoration:none;">סיפורי הצלחה</a>
     </div>
   </div>
 </footer>
 
 <script>
+
+  const SUPABASE_URL = 'sb_publishable_2CRfkWR-YqttogbVig8z0A_7e04brXF';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml0b3NtbXhobmF1a2hzZWRpbnp4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ5NTUzNzAsImV4cCI6MjA5MDUzMTM3MH0.zaanAUCeJRAS5NxUqsbFVMb5seRIJxnBbvwozPCQtAA';
+  
+  let supabaseClient = null;
+  if (typeof supabase !== 'undefined' && SUPABASE_URL !== 'YOUR_SUPABASE_URL') {
+    supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  }
+
   // Animation on scroll
-  const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1 });
-  reveals.forEach(el => observer.observe(el));
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
   // Nav effect
   window.addEventListener('scroll', () => {
@@ -529,15 +390,41 @@
     nav.style.background = window.scrollY > 50 ? 'rgba(0,17,58,1)' : 'rgba(0,17,58,0.9)';
   });
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     const btn = e.target.querySelector('.btn-submit');
-    btn.innerHTML = 'הפרטים נשלחו בהצלחה! ✓';
-    btn.style.background = '#16a34a';
-    btn.style.boxShadow = '0 4px 0 #14532d';
-    btn.disabled = true;
+    const originalContent = btn.innerHTML;
+    
+    if (!supabaseClient) {
+      console.error("Supabase client is not initialized. Please set URL and Key.");
+      btn.innerHTML = 'שגיאת חיבור (חסרים מפתחות)';
+      return;
+    }
+
+    const formData = {
+      full_name: document.getElementById('fullName').value,
+      age: parseInt(document.getElementById('age').value),
+      phone: document.getElementById('phone').value,
+      team: document.getElementById('team').value,
+      position: document.getElementById('position').value
+    };
+
+    try {
+      btn.innerHTML = 'שולח...';
+      btn.disabled = true;
+
+      const { error } = await supabaseClient.from('leads').insert([formData]);
+      if (error) throw error;
+
+      btn.innerHTML = 'הפרטים נשלחו בהצלחה! ✓';
+      btn.style.background = '#16a34a';
+      e.target.reset();
+    } catch (err) {
+      console.error('Submission error:', err.message);
+      btn.innerHTML = 'שגיאה בשליחה. נסה שוב';
+      setTimeout(() => { btn.innerHTML = originalContent; btn.disabled = false; }, 3000);
+    }
   }
 </script>
-
 </body>
 </html>
