@@ -73,6 +73,7 @@
     background: var(--gold); color: var(--navy);
     border: none; cursor: pointer;
     padding: 10px 24px; border-radius: 4px;
+    font-family: 'Assistant', sans-serif;
     font-weight: 800;
     font-size: 0.95rem;
     transition: all 0.2s; box-shadow: 0 4px 0 var(--gold-dark);
@@ -136,6 +137,7 @@
     background: var(--gold); color: var(--navy);
     border: none; cursor: pointer;
     padding: 18px 36px; border-radius: 8px;
+    font-family: 'Assistant', sans-serif;
     font-weight: 800;
     font-size: 1.2rem;
     box-shadow: 0 5px 0 var(--gold-dark);
@@ -149,6 +151,7 @@
     border: 2px solid rgba(255,255,255,0.2);
     color: var(--white); cursor: pointer;
     padding: 18px 36px; border-radius: 8px;
+    font-family: 'Assistant', sans-serif;
     font-weight: 700;
     font-size: 1.2rem;
     transition: all 0.2s; text-decoration: none;
@@ -215,17 +218,77 @@
   .tcard-name { font-weight: 800; font-size: 1.3rem; color: var(--navy); }
   .tcard-school { color: var(--red); font-weight: 700; margin-bottom: 15px; }
 
-  /* ─── FORM ─── */
-  .form-section { padding: 100px 60px; background: white; }
-  .form-container { max-width: 800px; margin: 0 auto; background: var(--off-white); padding: 50px; border-radius: 30px; border: 1px solid #eee; }
-  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px; }
-  .btn-submit { background: var(--gold); color: var(--navy); border: none; padding: 20px; border-radius: 10px; font-weight: 800; font-size: 1.3rem; cursor: pointer; box-shadow: 0 6px 0 var(--gold-dark); transition: 0.2s; width: 100%; }
-  .btn-submit:hover { transform: translateY(3px); box-shadow: 0 3px 0 var(--gold-dark); }
+  /* ─── ELEGANT FORM SECTION ─── */
+  .form-section { 
+    padding: 120px 60px; 
+    background: linear-gradient(180deg, var(--white) 0%, var(--off-white) 100%);
+    position: relative;
+  }
+  .form-container { 
+    max-width: 900px; margin: 0 auto; 
+    background: var(--white); 
+    padding: 60px; 
+    border-radius: 32px; 
+    box-shadow: 0 20px 80px rgba(0,17,58,0.08);
+    border: 1px solid rgba(0,17,58,0.03);
+    position: relative;
+    z-index: 2;
+  }
+  .form-header { text-align: center; margin-bottom: 45px; }
+  .form-header h2 { font-size: 2.8rem; font-weight: 800; color: var(--navy); margin-bottom: 15px; }
+  .form-header p { font-size: 1.15rem; color: #666; max-width: 500px; margin: 0 auto; line-height: 1.6; }
+
+  .form-grid { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 25px 30px; 
+  }
+  .field { display: flex; flex-direction: column; gap: 10px; }
+  .field.full { grid-column: span 2; }
+  
+  .field label { 
+    font-size: 0.95rem; font-weight: 700; color: var(--navy); 
+    margin-right: 4px; display: flex; align-items: center; gap: 6px;
+  }
+  .field label .material-symbols-outlined { font-size: 1.1rem; margin-bottom: 0; color: var(--red); }
+
+  input, select {
+    padding: 18px 20px; 
+    border-radius: 12px; 
+    border: 1px solid #e1e4e8;
+    background: #fcfdfe;
+    font-family: 'Assistant', sans-serif; 
+    font-size: 1.05rem;
+    transition: all 0.3s ease;
+    color: var(--navy);
+  }
+  input::placeholder { color: #abb2bf; }
+  input:focus, select:focus {
+    outline: none;
+    border-color: var(--navy);
+    background: var(--white);
+    box-shadow: 0 0 0 4px rgba(0,17,58,0.05);
+  }
+
+  .btn-submit {
+    background: var(--gold); color: var(--navy);
+    border: none; padding: 22px; border-radius: 14px;
+    font-family: 'Assistant', sans-serif;
+    font-weight: 800; font-size: 1.25rem; 
+    cursor: pointer;
+    box-shadow: 0 8px 0 var(--gold-dark); 
+    transition: all 0.2s ease;
+    width: 100%;
+    margin-top: 20px;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+  }
+  .btn-submit:hover { transform: translateY(3px); box-shadow: 0 4px 0 var(--gold-dark); background: #f2ce5b; }
+  .btn-submit:active { transform: translateY(6px); box-shadow: 0 0 0 var(--gold-dark); }
 
   /* ─── FOOTER ─── */
   footer { background: #00081a; color: white; padding: 80px 60px 40px; }
   .footer-inner { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; }
-  .footer-logo { height: 70px; width: auto; margin-bottom: 20px; display: block; }
+  .footer-logo { height: 75px; width: auto; margin-bottom: 20px; display: block; }
 
   @media (max-width: 1024px) {
     .hero-content { grid-template-columns: 1fr; text-align: center; }
@@ -234,6 +297,9 @@
     .bento-grid, .steps-grid, .testimonials-grid { grid-template-columns: 1fr; }
     .bc-experience, .bc-marketing, .bc-network, .bc-training { grid-column: span 1; }
     .nav-links { display: none; }
+    .form-container { padding: 40px 25px; }
+    .form-grid { grid-template-columns: 1fr; gap: 20px; }
+    .field.full { grid-column: span 1; }
   }
 
   .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s all ease; }
@@ -261,7 +327,6 @@
 <!-- ─── HERO ─── -->
 <header class="hero">
   <div class="hero-bg">
-    <!-- רקע של אצטדיון -->
     <img src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&q=80&w=2000" alt="Stadium Background"/>
   </div>
   <div class="hero-content">
@@ -283,7 +348,6 @@
       </div>
     </div>
     <div class="hero-card reveal">
-      <!-- תמונת שחקן כדורגל בקולג' ארה"ב -->
       <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&q=80&w=1000" alt="College Soccer USA"/>
       <div class="hero-stats">
         <div class="stat">
@@ -388,31 +452,48 @@
   </div>
 </section>
 
-<!-- ─── APPLY FORM ─── -->
+<!-- ─── ELEGANT APPLY FORM ─── -->
 <section class="form-section" id="apply">
   <div class="form-container reveal">
-    <h2 style="text-align:center; color:var(--navy)">בדוק התאמה למלגה</h2>
-    <p style="text-align:center; margin-bottom:30px">השאר פרטים ואחד המומחים שלנו יחזור אליך לשיחת אפיון</p>
+    <div class="form-header">
+      <span class="section-label">Admission 2026</span>
+      <h2>בדוק התאמה למלגה</h2>
+      <p>השאר פרטים ואחד המומחים שלנו יחזור אליך לשיחת אפיון ראשונית ובדיקת סיכויי קבלה.</p>
+    </div>
     <form onsubmit="handleSubmit(event)">
       <div class="form-grid">
         <div class="field">
-          <label>שם מלא</label>
+          <label><span class="material-symbols-outlined">person</span> שם מלא</label>
           <input type="text" required placeholder="ישראל ישראלי">
         </div>
         <div class="field">
-          <label>גיל</label>
-          <input type="number" required placeholder="18">
+          <label><span class="material-symbols-outlined">event</span> גיל</label>
+          <input type="number" required placeholder="למשל: 18">
         </div>
         <div class="field">
-          <label>טלפון</label>
+          <label><span class="material-symbols-outlined">call</span> טלפון ליצירת קשר</label>
           <input type="tel" required placeholder="050-0000000">
         </div>
         <div class="field">
-          <label>קבוצה נוכחית</label>
-          <input type="text" placeholder="שם הקבוצה">
+          <label><span class="material-symbols-outlined">sports_soccer</span> קבוצה נוכחית / מועדון</label>
+          <input type="text" placeholder="שם הקבוצה שלך">
         </div>
         <div class="field full">
-          <button type="submit" class="btn-submit">שלח פרטים לבדיקה</button>
+          <label><span class="material-symbols-outlined">shield</span> עמדה עיקרית במגרש</label>
+          <select>
+            <option value="" disabled selected>בחר עמדה</option>
+            <option>שוער</option>
+            <option>בלם / מגן</option>
+            <option>קשר אחורי / מרכזי</option>
+            <option>קשר התקפי / כנף</option>
+            <option>חלוץ</option>
+          </select>
+        </div>
+        <div class="field full">
+          <button type="submit" class="btn-submit">
+            שלח מועמדות לבדיקה
+            <span class="material-symbols-outlined">arrow_back_ios</span>
+          </button>
         </div>
       </div>
     </form>
@@ -426,10 +507,10 @@
       <img src="WhatsApp Image 2026-03-31 at 14.57.20.jpeg" alt="Logo" class="footer-logo"/>
       <p style="opacity:0.6">Next Level USA - הגשר שלך לכדורגל בקולג'ים.<br>© 2026 כל הזכויות שמורות.</p>
     </div>
-    <div style="display:flex; flex-direction:column; gap:10px">
-      <a href="#why-us" style="color:white; text-decoration:none">למה אנחנו</a>
-      <a href="#process" style="color:white; text-decoration:none">התהליך</a>
-      <a href="#testimonials" style="color:white; text-decoration:none">סיפורי הצלחה</a>
+    <div style="display:flex; flex-direction:column; gap:12px">
+      <a href="#why-us" style="color:white; text-decoration:none; font-weight: 600;">למה אנחנו</a>
+      <a href="#process" style="color:white; text-decoration:none; font-weight: 600;">התהליך</a>
+      <a href="#testimonials" style="color:white; text-decoration:none; font-weight: 600;">סיפורי הצלחה</a>
     </div>
   </div>
 </footer>
@@ -451,8 +532,9 @@
   function handleSubmit(e) {
     e.preventDefault();
     const btn = e.target.querySelector('.btn-submit');
-    btn.textContent = 'הפרטים נשלחו! ✓';
+    btn.innerHTML = 'הפרטים נשלחו בהצלחה! ✓';
     btn.style.background = '#16a34a';
+    btn.style.boxShadow = '0 4px 0 #14532d';
     btn.disabled = true;
   }
 </script>
