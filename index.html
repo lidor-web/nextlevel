@@ -74,15 +74,15 @@
     height: 2px; background: var(--red); border-radius: 1px;
   }
   .btn-nav {
-    background: var(--red); color: var(--white);
+    background: var(--gold); color: var(--navy);
     border: none; cursor: pointer;
     padding: 10px 24px; border-radius: 4px;
     font-family: 'Heebo', sans-serif; font-weight: 700;
     font-size: 0.875rem; letter-spacing: 0.08em;
     text-transform: uppercase;
-    transition: all 0.2s; box-shadow: 0 4px 0 var(--red-dark);
+    transition: all 0.2s; box-shadow: 0 4px 0 var(--gold-dark);
   }
-  .btn-nav:hover { transform: translateY(2px); box-shadow: 0 2px 0 var(--red-dark); }
+  .btn-nav:hover { transform: translateY(2px); box-shadow: 0 2px 0 var(--gold-dark); }
 
   /* ─── HERO ─── */
   .hero {
@@ -154,15 +154,15 @@
   .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
   .btn-primary {
     display: inline-flex; align-items: center; gap: 10px;
-    background: var(--red); color: var(--white);
+    background: var(--gold); color: var(--navy);
     border: none; cursor: pointer;
     padding: 16px 32px; border-radius: 6px;
     font-family: 'Heebo', sans-serif; font-weight: 800;
     font-size: 1.05rem;
-    box-shadow: 0 5px 0 var(--red-dark), 0 16px 48px rgba(187,0,28,0.3);
+    box-shadow: 0 5px 0 var(--gold-dark), 0 16px 48px rgba(233,195,73,0.35);
     transition: all 0.2s; text-decoration: none;
   }
-  .btn-primary:hover { transform: translateY(3px); box-shadow: 0 2px 0 var(--red-dark), 0 8px 24px rgba(187,0,28,0.2); }
+  .btn-primary:hover { transform: translateY(3px); box-shadow: 0 2px 0 var(--gold-dark), 0 8px 24px rgba(233,195,73,0.2); }
   .btn-secondary {
     display: inline-flex; align-items: center; gap: 10px;
     background: rgba(255,255,255,0.08);
@@ -491,17 +491,17 @@
   input::placeholder { color: #bbb; }
   .btn-submit {
     width: 100%; padding: 18px;
-    background: var(--red); color: var(--white);
+    background: var(--gold); color: var(--navy);
     border: none; cursor: pointer;
     border-radius: 10px;
     font-family: 'Lexend', sans-serif;
     font-weight: 900; font-size: 1.1rem;
     letter-spacing: 0.04em;
-    box-shadow: 0 6px 0 var(--red-dark), 0 20px 48px rgba(187,0,28,0.25);
+    box-shadow: 0 6px 0 var(--gold-dark), 0 20px 48px rgba(233,195,73,0.25);
     transition: all 0.2s;
     margin-top: 8px;
   }
-  .btn-submit:hover { transform: translateY(3px); box-shadow: 0 3px 0 var(--red-dark), 0 10px 24px rgba(187,0,28,0.2); }
+  .btn-submit:hover { transform: translateY(3px); box-shadow: 0 3px 0 var(--gold-dark), 0 10px 24px rgba(233,195,73,0.2); }
 
   /* ─── FOOTER ─── */
   footer {
@@ -661,7 +661,7 @@
       <a href="#process">התהליך</a>
       <a href="#apply">מלגות</a>
     </div>
-    <button class="btn-nav">Apply Now</button>
+    <a href="#apply" class="btn-nav">להרשמה</a>
   </div>
 </nav>
 
@@ -1002,6 +1002,7 @@
     const btn = e.target.querySelector('.btn-submit');
     btn.textContent = '✓ פרטים נשלחו! ניצור קשר בקרוב.';
     btn.style.background = '#16a34a';
+    btn.style.color = '#fff';
     btn.style.boxShadow = '0 4px 0 #14532d';
     btn.disabled = true;
   }
